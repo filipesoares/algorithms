@@ -32,9 +32,20 @@ Example:
     Input:
         numRows=3
         numColumns=3
-        area=[[1,0,0],[1,0,0],[1,9,1]]
+        area=[
+                [1,0,0],
+                [1,0,0],
+                [1,9,1]
+            ]
     Output:
         3
+
+    Input:
+        area=[1,1,1,1]
+             [0,1,1,1]
+             [0,1,0,1]
+             [1,1,9,1]
+             [0,0,1,1]
 
 Explanation:
 Starting from the top-left corner, the truck traversed the cells (0,0) -> (1,0) -> (2,0) -> (2,1). The truck traversed the total distance 3 to deliver the order.
