@@ -31,17 +31,14 @@ public final class App {
 		visited[row][column] = true;
 		
 		for (int i = 0; i < 4; i++) {
-			if ( (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i] >= 0) && (column + edgesCol[i] < columns) 
+			if ( (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i] >= 0) 
+					&& (column + edgesCol[i] < columns) 
 					&& (matrix[row + edgesRow[i]][column + edgesCol[i]]==9) ) {
-				// System.out.println("Hit");
-					// System.out.println(log + " => " + edgesRow[i] + " => " + edgesCol[i]);
 				founded = true;
 				break;
 			}
 			if ( (i+1<4) && (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i+1] >= 0) && (column + edgesCol[i+1] < columns) 
 					&& (matrix[row + edgesRow[i]][column + edgesCol[i+1]]==9) ) {
-				// System.out.println("Hit");
-					// System.out.println(log + " => " + edgesRow[i] + " => " + edgesCol[i]);
 				founded = true;
 				break;
 			}
@@ -65,28 +62,19 @@ public final class App {
 		}
 
 		boolean check[][] = new boolean[numRows][numColumns];
-		// int count = 0;
 		rows = numRows;
 		columns = numColumns;
 
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
 				if (data[i][j] == 9) {
-					// System.out.println("(" + i + "," + j + ")");
 					break;
 				}
 				if (data[i][j] == 1 && !check[i][j] && founded==false) {
 					dfs(data, i, j, check);
-					// ++count;
 				}
-				// check[i][j] = true;
-				// System.out.print(data[i][j]);
-
 			}
 		}
-
-		// System.out.println(Arrays.deepToString(data));
-		// System.out.println(count);
 
 		return count;
 	}
@@ -112,7 +100,7 @@ public final class App {
 		
 		App app = new App();
 
-		System.out.println(app.minimumDistance(numRows, numColumns, area));
+		// System.out.println(app.minimumDistance(numRows, numColumns, area));
 	}
 
 }
