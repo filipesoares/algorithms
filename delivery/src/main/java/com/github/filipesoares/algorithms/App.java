@@ -11,39 +11,49 @@ import java.util.List;
  */
 public final class App {
 
-	static int rows = 0;
-	static int columns = 0;
+	private int rows = 0;
+	private int columns = 0;
+	private boolean founded = false;
+	private int count = 0;
 
-	private App() {
+	public App() {}
+
+	private boolean isSafe(int M[][], int row, int col, boolean visited[][]) {
+		return (row >= 0) && (row < this.rows) && (col >= 0) && (col < this.columns) && (M[row][col] == 1 && !visited[row][col]);
 	}
 
-	private static boolean isSafe(int M[][], int row, int col, boolean visited[][]) {
-		return (row >= 0) && (row < rows) && (col >= 0) && (col < columns) && (M[row][col] == 1 && !visited[row][col]);
-	}
-
-	private static boolean dfs(int[][] matrix, int row, int column, boolean[][] visited) {
+	private void dfs(int[][] matrix, int row, int column, boolean[][] visited) {
 		
 		System.out.println("(" + row + "," + column + ") " + matrix[row][column]);
 
 		int[] edgesRow = { -1, 1, 0, 0 };
 		int[] edgesCol = { 0, 0, -1, 1 };
 		visited[row][column] = true;
-		boolean found = false;
 		
 		for (int i = 0; i < 4; i++) {
-			if ( (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i] >= 0) && (column + edgesCol[i] < columns) && (matrix[row + edgesRow[i]][column + edgesCol[i]]==9) ) {
-				System.out.println("Hit");
-				found = true;
+			if ( (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i] >= 0) && (column + edgesCol[i] < columns) 
+					&& (matrix[row + edgesRow[i]][column + edgesCol[i]]==9) ) {
+				// System.out.println("Hit");
+					// System.out.println(log + " => " + edgesRow[i] + " => " + edgesCol[i]);
+				founded = true;
 				break;
 			}
-			if ( isSafe(matrix, row + edgesRow[i], column + edgesCol[i], visited) ) {
+			if ( (i+1<4) && (row + edgesRow[i] >= 0) && (row + edgesRow[i] < rows) && (column + edgesCol[i+1] >= 0) && (column + edgesCol[i+1] < columns) 
+					&& (matrix[row + edgesRow[i]][column + edgesCol[i+1]]==9) ) {
+				// System.out.println("Hit");
+					// System.out.println(log + " => " + edgesRow[i] + " => " + edgesCol[i]);
+				founded = true;
+				break;
+			}
+			if ( isSafe(matrix, row + edgesRow[i], column + edgesCol[i], visited) && founded==false) {
 				dfs(matrix, row + edgesRow[i], column + edgesCol[i], visited);
 			}
 		}
-		return found;
+
+		count++;
 	}
 
-	public static int minimumDistance(int numRows, int numColumns, List<List<Integer>> area) {
+	public int minimumDistance(int numRows, int numColumns, List<List<Integer>> area) {
 
 		int[][] data = new int[numRows][numColumns];
 
@@ -55,7 +65,7 @@ public final class App {
 		}
 
 		boolean check[][] = new boolean[numRows][numColumns];
-		int count = 0;
+		// int count = 0;
 		rows = numRows;
 		columns = numColumns;
 
@@ -65,13 +75,9 @@ public final class App {
 					// System.out.println("(" + i + "," + j + ")");
 					break;
 				}
-				if (data[i][j] == 1 && !check[i][j]) {
-					if (dfs(data, i, j, check)) {
-						i = numRows;
-						break;
-					} else {
-						++count;
-					}
+				if (data[i][j] == 1 && !check[i][j] && founded==false) {
+					dfs(data, i, j, check);
+					// ++count;
 				}
 				// check[i][j] = true;
 				// System.out.print(data[i][j]);
@@ -93,7 +99,7 @@ public final class App {
 		area.add(Arrays.asList(1, 0, 0));
 		area.add(Arrays.asList(1, 9, 1));
 
-		System.out.println(minimumDistance(numRows, numColumns, area));
+		// System.out.println(minimumDistance(numRows, numColumns, area));
 
 		numRows = 5;
 		numColumns = 4;
@@ -103,8 +109,10 @@ public final class App {
 		area.add(Arrays.asList(0, 1, 0, 1));
 		area.add(Arrays.asList(1, 1, 9, 1));
 		area.add(Arrays.asList(0, 0, 1, 1));
+		
+		App app = new App();
 
-		System.out.println(minimumDistance(numRows, numColumns, area));
+		System.out.println(app.minimumDistance(numRows, numColumns, area));
 	}
 
 }

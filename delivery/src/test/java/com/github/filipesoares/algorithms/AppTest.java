@@ -24,7 +24,9 @@ public class AppTest {
 		area.add(Arrays.asList(1,0,0));
 		area.add(Arrays.asList(1,9,1));
 		
-		int result = App.minimumDistance(numRows, numColumns, area);
+		App app = new App();
+		
+		int result = app.minimumDistance(numRows, numColumns, area);
 
 		assertThat(result, equalTo(3));
 	}
@@ -41,7 +43,9 @@ public class AppTest {
 		area.add(Arrays.asList(1,1,9,1));
 		area.add(Arrays.asList(0,0,1,1));
 		
-		int result = App.minimumDistance(numRows, numColumns, area);
+		App app = new App();
+		
+		int result = app.minimumDistance(numRows, numColumns, area);
 
 		assertThat(result, equalTo(5));
 	}
