@@ -4,7 +4,12 @@ package com.github.filipesoares.algorithms;
 // BFS(int s) traverses vertices reachable from s. 
 import java.io.*; 
 import java.util.*;
-
+/*
+ * https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+ * https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+ * https://www.geeksforgeeks.org/find-paths-given-source-destination/
+ * https://www.geeksforgeeks.org/count-possible-paths-two-vertices/
+ */
 public class BreadthFirstSearch {
 
 		private int V; // No. of vertices 
