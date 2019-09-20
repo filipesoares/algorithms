@@ -4,7 +4,17 @@ package com.github.filipesoares.algorithms;
 //paths from a source to 
 //destination. 
 import java.util.ArrayList; 
-import java.util.List; 
+import java.util.List;
+
+import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.connectivity.KosarajuStrongConnectivityInspector;
+import org.jgrapht.alg.interfaces.ShortestPathAlgorithm.SingleSourcePaths;
+import org.jgrapht.alg.interfaces.StrongConnectivityAlgorithm;
+import org.jgrapht.alg.shortestpath.AllDirectedPaths;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.DefaultEdge; 
 
 //A directed graph using 
 //adjacency list representation 
@@ -114,7 +124,7 @@ public class DepthFirstTraversal {
 		// C => 2
 		// D => 3
 		// E => 4
-		
+		/*
 		List<Edge> edges = new ArrayList<>();
 		edges.add(new Edge("A", "B"));
 		edges.add(new Edge("B", "C"));
@@ -145,7 +155,57 @@ public class DepthFirstTraversal {
 		int d = 2; 
 	
 		System.out.println("Following are all different paths from "+s+" to "+d); 
-		g.printAllPaths(s, d); 
+		g.printAllPaths(s, d);
+		*/
+		
+		Graph<String, DefaultEdge> jGraph = new DefaultDirectedGraph<>(DefaultEdge.class);
+		
+		jGraph.addVertex("A");
+		jGraph.addVertex("B");
+		jGraph.addVertex("C");
+		jGraph.addVertex("D");
+		jGraph.addVertex("E");
+		
+		jGraph.addEdge("A", "B");
+		jGraph.addEdge("B", "C");
+		jGraph.addEdge("C", "D");
+		jGraph.addEdge("D", "C");
+		jGraph.addEdge("D", "E");
+		jGraph.addEdge("A", "D");
+		jGraph.addEdge("C", "E");
+		jGraph.addEdge("E", "B");
+		jGraph.addEdge("A", "E");
+		
+		AllDirectedPaths<String, DefaultEdge> directedPaths = new AllDirectedPaths<>(jGraph);
+        directedPaths.getAllPaths("A", "C", false, 3)
+        	.stream()
+        	.map(GraphPath::getVertexList)
+        	.forEach(System.out::println);
+        
+        directedPaths.getAllPaths("A", "C", false, 3).stream().forEach(g->g.getLength());
+        
+		/*// computes all the strongly connected components of the directed graph
+        StrongConnectivityAlgorithm<String, DefaultEdge> scAlg =
+            new KosarajuStrongConnectivityInspector<>(jGraph);
+        List<Graph<String, DefaultEdge>> stronglyConnectedSubgraphs =
+            scAlg.getStronglyConnectedComponents();
+
+        // prints the strongly connected components
+        System.out.println("Strongly connected components:");
+        for (int i = 0; i < stronglyConnectedSubgraphs.size(); i++) {
+            System.out.println(stronglyConnectedSubgraphs.get(i));
+        }
+        System.out.println();
+		
+		// Prints the shortest path from vertex i to vertex c. This certainly
+        // exists for our particular directed graph.
+        System.out.println("Shortest path from A to C:");
+        
+        DijkstraShortestPath<String, DefaultEdge> dijkstraAlg =
+            new DijkstraShortestPath<>(jGraph);
+        SingleSourcePaths<String, DefaultEdge> iPaths = dijkstraAlg.getPaths("A");
+        
+        System.out.println(iPaths.getPath("C") + "\n");*/
 
 	}
 }
