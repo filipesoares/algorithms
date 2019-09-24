@@ -1,7 +1,9 @@
 package com.github.filipesoares.algorithms;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +42,15 @@ public final class PrimeNumbers {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out)); 
+
         int start = Integer.parseInt(br.readLine());
         int end = Integer.parseInt(br.readLine());
         br.close();
-        System.out.println(fetch(start, end));
+        
+        writer.write(fetch(start, end).toString());
+        writer.flush();
+        writer.close();
     }
     
 }
