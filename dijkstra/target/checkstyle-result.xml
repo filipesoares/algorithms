@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.19">
+<file name="C:\git\github\algorithms\junction-boxes\src\main\java\com\github\filipesoares\algorithms\App.java">
+<error line="1" severity="error" message="O arquivo package-info.java está faltando." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="6" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+<error line="8" column="5" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="11" severity="error" message="A linha contém mais do que 80 caracteres (foram encontrados 85)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="11" column="1" severity="error" message="O arquivo contém caracteres de tabulação (esta é a primeira ocorrência)." source="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"/>
+<error line="11" column="9" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="11" column="46" severity="error" message="O parâmetro numberOfBoxes deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="11" column="65" severity="error" message="O parâmetro boxes deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="25" severity="error" message="A linha contém mais do que 80 caracteres (foram encontrados 117)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="26" severity="error" message="A linha contém mais do que 80 caracteres (foram encontrados 113)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="28" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="36" column="9" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="36" column="33" severity="error" message="O parâmetro args deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="49" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+</file>
+</checkstyle>
