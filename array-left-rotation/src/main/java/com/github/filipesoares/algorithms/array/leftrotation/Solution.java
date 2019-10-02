@@ -15,18 +15,18 @@ public class Solution {
     	
     	do {
     		
-    		// int[] array = new int[a.length];
+    		int[] array = new int[a.length];
     		
     		for (int j = 0; j < a.length; j++) {
     			if (j==0)
-    				a[(a.length-1)] = a[j];
+    				array[(a.length-1)] = a[j];
     			
     			else
-    				a[j-1] = a[j];
+    				array[j-1] = a[j];
 			}
     		 
     		d--;
-    		// a = array;
+    		a = array;
     		
     		
 		} while (d>0);
