@@ -1,38 +1,27 @@
 package com.github.filipesoares.algorithms.array.leftrotation;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+// https://www.hackerrank.com/challenges/ctci-array-left-rotation/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
 public class Solution {
-
-    // Complete the rotLeft function below.
-    static int[] rotLeft(int[] a, int d) {
+	
+	static int[] rotLeft(int[] a, int d) {
     	
-    	do {
-    		
-    		int[] array = new int[a.length];
-    		
-    		for (int j = 0; j < a.length; j++) {
-    			if (j==0)
-    				array[(a.length-1)] = a[j];
-    			
-    			else
-    				array[j-1] = a[j];
-			}
-    		 
-    		d--;
-    		a = array;
-    		
-    		
-		} while (d>0);
-    	
-    	return a;
-
+		int[] array = new int[a.length];
+		
+    	for (int i = 0; i < a.length; i++) {    	
+    		if (i==d)
+    			array[0] = a[i];
+    		else if((i-d)<0)
+    			array[(a.length+(i-d))] = a[i];
+    		else
+    			array[i-d] = a[i];
+		}
+    	return array;
     }
 
     public static void main(String[] args) throws IOException {
@@ -47,15 +36,13 @@ public class Solution {
         
         String[] aItems = reader.readLine().split(" ");
         
-        int[] result = rotLeft(Arrays
+        reader.close();
+        
+        rotLeft(Arrays
 				.asList(aItems)
 				.stream()
 				.mapToInt(Integer::parseInt).toArray(), d);
         
-        for (int i = 0; i < result.length; i++) {
-        	bufferedWriter.write(String.valueOf(result[i]) + (i!=(result.length-1) ?  " ": ""));
-		}
-
         bufferedWriter.flush();
         bufferedWriter.close();
         
